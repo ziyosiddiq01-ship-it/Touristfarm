@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tourist Farm</title>
+    <style>
+      :root {
+        --bg: #07121f;
+        --bg2: #0d1d31;
+        --card: #122740;
+        --tx: #eaf1f8;
+        --mut: #93a7bd;
+        --ac: #2ee6a6;
+        --ac2: #4aa8ff;
+        --wm: #ffb454;
+        --r: 18px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--tx);
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+      }
+      section {
+        padding: 80px 0;
+      }
+      h2.t {
+        font-size: clamp(26px, 4vw, 40px);
+        margin-bottom: 8px;
+      }
+      p.s {
+        color: var(--mut);
+        margin-bottom: 36px;
+        max-width: 640px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 13px 26px;
+        border-radius: 50px;
+        border: 0;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 15px;
+        background: linear-gradient(135deg, var(--ac), var(--ac2));
+        color: #04121f;
+        transition: 0.25s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px #2ee6a644;
+      }
+      .btn.o {
+        background: transparent;
+        border: 1.5px solid #ffffff44;
+        color: var(--tx);
+      }
+      header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        background: #07121fd9;
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid #ffffff12;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 21px;
+        letter-spacing: 0.3px;
+      }
+      .logo b {
+        color: var(--ac);
+      }
+      .links {
+        display: flex;
+        gap: 26px;
+        font-size: 15px;
+        color: var(--mut);
+      }
+      .links a:hover {
+        color: var(--ac);
+      }
+      .burger {
+        display: none;
+        background: none;
+        border: 0;
+        color: var(--tx);
+        font-size: 28px;
+        cursor: pointer;
+      }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 90px;
+        background:
+          radial-gradient(900px 500px at 80% 10%, #4aa8ff33, transparent),
+          radial-gradient(700px 500px at 10% 90%, #2ee6a626, transparent),
+          var(--bg);
+      }
+      .hero h1 {
+        font-size: clamp(36px, 6vw, 68px);
+        line-height: 1.1;
+        margin-bottom: 18px;
+      }
+      .hero h1 span {
+        background: linear-gradient(135deg, var(--ac), var(--ac2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero p {
+        color: var(--mut);
+        font-size: 18px;
+        max-width: 560px;
+        margin-bottom: 30px;
+      }
+      .hero .cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 46px;
+      }
+      .stats {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .stats b {
+        font-size: 32px;
+        color: var(--ac);
+        display: block;
+      }
+      .stats span {
+        color: var(--mut);
+        font-size: 14px;
+      }
+      .feat {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .fc {
+        position: relative;
+        border-radius: 24px;
+        padding: 28px;
+        min-height: 430px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.3s;
+        border: 1px solid #ffffff1a;
+      }
+      .fc:hover {
+        transform: translateY(-8px);
+      }
+      .fc .em {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        font-size: 86px;
+        opacity: 0.95;
+      }
+      .fc .tag {
+        align-self: flex-start;
+        background: #00000055;
+        padding: 5px 13px;
+        border-radius: 30px;
+        font-size: 12px;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+      .fc h3 {
+        font-size: 34px;
+      }
+      .fc p {
+        opacity: 0.9;
+        margin: 8px 0 16px;
+        font-size: 15px;
+      }
+      .fc .pr {
+        font-weight: 800;
+        font-size: 20px;
+      }
+      .fc .pr small {
+        font-weight: 400;
+        opacity: 0.8;
+        font-size: 13px;
+      }
+      .tools {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .tools input,
+      .tools select,
+      .form input,
+      .form select,
+      .form textarea,
+      .calc select,
+      .calc input {
+        background: var(--bg2);
+        border: 1px solid #ffffff1f;
+        color: var(--tx);
+        padding: 13px 16px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        width: 100%;
+      }
+      .tools input {
+        flex: 1;
+        min-width: 220px;
+        width: auto;
+      }
+      .tools select {
+        width: auto;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--ac);
+      }
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 26px;
+      }
+      .chip {
+        padding: 8px 16px;
+        border-radius: 30px;
+        background: var(--bg2);
+        border: 1px solid #ffffff1a;
+        color: var(--mut);
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+      .chip.on,
+      .chip:hover {
+        background: var(--ac);
+        color: #04121f;
+        border-color: var(--ac);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: var(--card);
+        border-radius: var(--r);
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid #ffffff12;
+        transition: 0.25s;
+        animation: in 0.5s both;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--ac);
+        box-shadow: 0 14px 34px #0006;
+      }
+      .card .top {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 64px;
+      }
+      .card .bd {
+        padding: 16px 18px 18px;
+      }
+      .card h4 {
+        font-size: 18px;
+      }
+      .card .ct {
+        font-size: 12px;
+        color: var(--ac);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .card p {
+        color: var(--mut);
+        font-size: 14px;
+        margin: 6px 0 12px;
+        min-height: 44px;
+      }
+      .card .pp {
+        font-weight: 700;
+        color: var(--wm);
+      }
+      .card .pp small {
+        color: var(--mut);
+        font-weight: 400;
+      }
+      @keyframes in {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .empty {
+        text-align: center;
+        color: var(--mut);
+        padding: 40px;
+        display: none;
+      }
+      .more {
+        text-align: center;
+        margin-top: 30px;
+      }
+      .why {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+      }
+      .why div {
+        background: var(--card);
+        padding: 28px;
+        border-radius: var(--r);
+        border: 1px solid #ffffff12;
+      }
+      .why i {
+        font-style: normal;
+        font-size: 34px;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .why h4 {
+        margin-bottom: 6px;
+      }
+      .why p {
+        color: var(--mut);
+        font-size: 14px;
+      }
+      .calc {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        background: var(--card);
+        padding: 36px;
+        border-radius: 24px;
+        border: 1px solid #ffffff14;
+      }
+      .calc label {
+        display: block;
+        font-size: 13px;
+        color: var(--mut);
+        margin: 14px 0 6px;
+      }
+      .calc label:first-child {
+        margin-top: 0;
+      }
+      .res {
+        background: linear-gradient(160deg, #0f3a52, #0b2237);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .res .big {
+        font-size: 48px;
+        font-weight: 800;
+        color: var(--ac);
+      }
+      .res ul {
+        list-style: none;
+        margin: 16px 0;
+      }
+      .res li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px dashed #ffffff22;
+        color: var(--mut);
+        font-size: 14px;
+      }
+      .res li b {
+        color: var(--tx);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        counter-reset: s;
+      }
+      .steps div {
+        counter-increment: s;
+        background: var(--card);
+        padding: 26px;
+        border-radius: var(--r);
+        position: relative;
+      }
+      .steps div:before {
+        content: counter(s);
+        position: absolute;
+        top: -14px;
+        left: 22px;
+        background: var(--ac);
+        color: #04121f;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+      }
+      .steps p {
+        color: var(--mut);
+        font-size: 14px;
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 36px;
+      }
+      .info div {
+        background: var(--card);
+        padding: 18px 22px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .info i {
+        font-style: normal;
+        font-size: 26px;
+      }
+      .info span {
+        display: block;
+        color: var(--mut);
+        font-size: 13px;
+      }
+      .form {
+        background: var(--card);
+        padding: 30px;
+        border-radius: 22px;
+        display: grid;
+        gap: 14px;
+      }
+      .form .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .form textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+      footer {
+        background: #050d17;
+        padding: 36px 0;
+        text-align: center;
+        color: var(--mut);
+        font-size: 14px;
+        border-top: 1px solid #ffffff10;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: #000000b3;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        backdrop-filter: blur(6px);
+      }
+      .modal.open {
+        display: flex;
+      }
+      .mb {
+        background: var(--bg2);
+        max-width: 860px;
+        width: 100%;
+        max-height: 92vh;
+        overflow: auto;
+        border-radius: 24px;
+        border: 1px solid #ffffff1f;
+        animation: in 0.3s;
+      }
+      .mh {
+        padding: 34px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        position: relative;
+      }
+      .mh .fl {
+        font-size: 84px;
+        line-height: 1;
+      }
+      .mh h3 {
+        font-size: 32px;
+      }
+      .mh span {
+        opacity: 0.85;
+      }
+      .x {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        background: #00000066;
+        color: #fff;
+        border: 0;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .mc {
+        padding: 30px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 30px;
+      }
+      .mc h5 {
+        font-size: 13px;
+        color: var(--ac);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 18px 0 8px;
+      }
+      .mc h5:first-child {
+        margin-top: 0;
+      }
+      .mc p {
+        color: #c5d3e2;
+        font-size: 15px;
+      }
+      .pl {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .pl span {
+        background: var(--card);
+        padding: 7px 14px;
+        border-radius: 30px;
+        font-size: 13px;
+      }
+      .bx {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .bx li {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 7px 0;
+        font-size: 14px;
+        color: var(--mut);
+      }
+      .bx li b {
+        color: var(--tx);
+      }
+      .bx .tt {
+        border-top: 1px solid #ffffff22;
+        margin-top: 8px;
+        padding-top: 12px;
+        font-size: 22px;
+        color: var(--ac);
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+      }
+      .bx .btn {
+        width: 100%;
+        margin-top: 14px;
+        text-align: center;
+      }
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--ac);
+        color: #04121f;
+        padding: 14px 26px;
+        border-radius: 40px;
+        font-weight: 700;
+        z-index: 200;
+        transition: 0.4s;
+      }
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+      @media (max-width: 900px) {
+        .feat,
+        .calc,
+        .contact,
+        .mc {
+          grid-template-columns: 1fr;
+        }
+        .links {
+          display: none;
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          background: var(--bg2);
+          flex-direction: column;
+          padding: 20px;
+          gap: 16px;
+        }
+        .links.open {
+          display: flex;
+        }
+        .burger {
+          display: block;
+        }
+        .mh {
+          flex-direction: column;
+          text-align: center;
+        }
+        .form .two {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .lang {
+        display: flex;
+        gap: 4px;
+        background: var(--bg2);
+        padding: 4px;
+        border-radius: 30px;
+        border: 1px solid #ffffff1a;
+      }
+      .lang button {
+        background: none;
+        border: 0;
+        color: var(--mut);
+        padding: 6px 12px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .lang button.on {
+        background: var(--ac);
+        color: #04121f;
+      }
+      .rt {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <nav>
+          <a href="#top" class="logo">🌍 Tourist<b>Farm</b></a>
+          <div class="links" id="links">
+            <a href="#top" data-i="nav_home"></a
+            ><a href="#hot" data-i="nav_hot"></a
+            ><a href="#countries" data-i="nav_countries"></a
+            ><a href="#calc" data-i="nav_calc"></a
+            ><a href="#why" data-i="nav_why"></a
+            ><a href="#contact" data-i="nav_contact"></a>
+          </div>
+          <div class="rt">
+            <div class="lang">
+              <button data-l="uz">UZ</button><button data-l="en">EN</button
+              ><button data-l="ru">RU</button>
+            </div>
+            <button class="burger" id="burger" aria-label="Menu">☰</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="wrap">
+        <h1 data-i="hero_h"></h1>
+        <p data-i="hero_p"></p>
+        <div class="cta">
+          <a href="#countries" class="btn" data-i="b_view"></a
+          ><a href="#calc" class="btn o" data-i="b_calc"></a>
+        </div>
+        <div class="stats">
+          <div><b data-n="120">0</b><span data-i="st1"></span></div>
+          <div><b data-n="15000">0</b><span data-i="st2"></span></div>
+          <div><b data-n="12">0</b><span data-i="st3"></span></div>
+          <div><b data-n="24">0</b><span data-i="st4"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hot" style="background: var(--bg2)">
+      <div class="wrap">
+        <h2 class="t" data-i="hot_t"></h2>
+        <p class="s" data-i="hot_s"></p>
+        <div class="feat" id="feat"></div>
+      </div>
+    </section>
+
+    <section id="countries">
+      <div class="wrap">
+        <h2 class="t">
+          <span data-i="c_t"></span>
+          <span id="cnt" style="color: var(--ac)"></span>
+        </h2>
+        <p class="s" data-i="c_s"></p>
+        <div class="tools">
+          <input id="q" type="search" data-ip="ph_q" /><select id="sort">
+            <option value="n" data-i="s_n"></option>
+            <option value="a" data-i="s_a"></option>
+            <option value="d" data-i="s_d"></option>
+          </select>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="grid" id="grid"></div>
+        <div class="empty" id="empty" data-i="empty"></div>
+        <div class="more">
+          <button class="btn o" id="more" data-i="more"></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="calc" style="background: var(--bg2)">
+      <div class="wrap">
+        <h2 class="t" data-i="calc_t"></h2>
+        <p class="s" data-i="calc_s"></p>
+        <div class="calc">
+          <div>
+            <label data-i="l_country"></label
+            ><select id="cC"></select>
+            <label><span data-i="l_days"></span>: <b id="dv">7</b></label
+            ><input type="range" id="cD" min="3" max="30" value="7" />
+            <label data-i="l_ppl"></label
+            ><input type="number" id="cP" min="1" max="30" value="2" />
+            <label data-i="l_hotel"></label
+            ><select id="cH">
+              <option value="0.8" data-i="h3"></option>
+              <option value="1" selected data-i="h4"></option>
+              <option value="1.45" data-i="h5"></option>
+            </select>
+          </div>
+          <div class="res">
+            <span style="color: var(--mut)" data-i="l_total"></span>
+            <div class="big" id="rT">$0</div>
+            <ul id="rL"></ul>
+            <a
+              href="#contact"
+              class="btn"
+              style="text-align: center"
+              data-i="order"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="wrap">
+        <h2 class="t" data-i="why_t"></h2>
+        <p class="s" data-i="why_s"></p>
+        <div class="why">
+          <div>
+            <i>💰</i>
+            <h4 data-i="w1t"></h4>
+            <p data-i="w1p"></p>
+          </div>
+          <div>
+            <i>🛂</i>
+            <h4 data-i="w2t"></h4>
+            <p data-i="w2p"></p>
+          </div>
+          <div>
+            <i>🧭</i>
+            <h4 data-i="w3t"></h4>
+            <p data-i="w3p"></p>
+          </div>
+          <div>
+            <i>🛡️</i>
+            <h4 data-i="w4t"></h4>
+            <p data-i="w4p"></p>
+          </div>
+          <div>
+            <i>📞</i>
+            <h4 data-i="w5t"></h4>
+            <p data-i="w5p"></p>
+          </div>
+          <div>
+            <i>🎁</i>
+            <h4 data-i="w6t"></h4>
+            <p data-i="w6p"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: var(--bg2)">
+      <div class="wrap">
+        <h2 class="t" data-i="how_t"></h2>
+        <p class="s" style="margin-bottom: 46px" data-i="how_s"></p>
+        <div class="steps">
+          <div>
+            <h4 data-i="s1t"></h4>
+            <p data-i="s1p"></p>
+          </div>
+          <div>
+            <h4 data-i="s2t"></h4>
+            <p data-i="s2p"></p>
+          </div>
+          <div>
+            <h4 data-i="s3t"></h4>
+            <p data-i="s3p"></p>
+          </div>
+          <div>
+            <h4 data-i="s4t"></h4>
+            <p data-i="s4p"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="t" data-i="con_t"></h2>
+        <p class="s" data-i="con_s"></p>
+        <div class="contact">
+          <div class="info">
+            <div>
+              <i>📍</i>
+              <p>
+                <span data-i="i_addr"></span
+                ><em style="font-style: normal" data-i="i_addr_v"></em>
+              </p>
+            </div>
+            <div>
+              <i>📞</i>
+              <p><span data-i="i_phone"></span>+998 90 123 45 67</p>
+            </div>
+            <div>
+              <i>✉️</i>
+              <p><span data-i="i_mail"></span>info@touristfarm.uz</p>
+            </div>
+            <div>
+              <i>💬</i>
+              <p><span data-i="i_tg"></span>@touristfarm_uz</p>
+            </div>
+            <div>
+              <i>🕘</i>
+              <p>
+                <span data-i="i_hours"></span
+                ><em style="font-style: normal" data-i="i_hours_v"></em>
+              </p>
+            </div>
+          </div>
+          <form class="form" id="form">
+            <div class="two">
+              <input required data-ip="ph_name" /><input
+                required
+                type="tel"
+                placeholder="+998 __ ___ __ __"
+              />
+            </div>
+            <select id="fc"></select>
+            <textarea data-ip="ph_msg"></textarea>
+            <button class="btn" type="submit" data-i="send"></button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer><div class="wrap" id="foot"></div></footer>
+
+    <div class="modal" id="modal"><div class="mb" id="mb"></div></div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // uz: name|flag|continent|capital|price(USD, 7 days/person)|description|places
+      const RAW = `Yaponiya|🇯🇵|A|Tokio|2400|Sakura, texnologiya va qadimiy ibodatxonalar mamlakati|Tokio,Kioto,Fuji tog'i
+Islandiya|🇮🇸|Y|Reykyavik|3100|Shimol nurlari, vulqonlar va geyzerlar yurti|Blyu Lagun,Gullfoss,Vik
+Italiya|🇮🇹|Y|Rim|1800|San'at, tarix va betakror oshxona|Rim,Venetsiya,Florensiya
+Fransiya|🇫🇷|Y|Parij|1900|Eyfel minorasi, Luvr va shampan vinolari|Parij,Nitssa,Versal
+Ispaniya|🇪🇸|Y|Madrid|1500|Flamenko, plyajlar va Gaudi me'morchiligi|Barselona,Madrid,Sevilya
+Germaniya|🇩🇪|Y|Berlin|1600|Qal'alar, Rayn vodiysi va pivo bayramlari|Berlin,Myunxen,Neyshvanshteyn
+Buyuk Britaniya|🇬🇧|Y|London|2200|Qirollik an'analari va jahon muzeylari|London,Edinburg,Oksford
+Gretsiya|🇬🇷|Y|Afina|1500|Qadimgi sivilizatsiya va moviy orollar|Afina,Santorini,Mikonos
+Portugaliya|🇵🇹|Y|Lissabon|1400|Okean sohillari va rang-barang shaharlar|Lissabon,Porto,Algarve
+Shveytsariya|🇨🇭|Y|Bern|3200|Alp tog'lari, ko'llar va shokolad|Syurix,Lusern,Interlaken
+Avstriya|🇦🇹|Y|Vena|1700|Klassik musiqa va imperator saroylari|Vena,Zalsburg,Gallshtatt
+Niderlandiya|🇳🇱|Y|Amsterdam|1700|Kanallar, lolalar va velosipedlar|Amsterdam,Kekenhof,Roterdam
+Belgiya|🇧🇪|Y|Bryussel|1500|O'rta asr shaharlari va shokolad|Bryussel,Bryugge,Gent
+Chexiya|🇨🇿|Y|Praga|1100|Ertak kabi Praga va qal'alar|Praga,Cheski-Krumlov,Karlovi-Vari
+Vengriya|🇭🇺|Y|Budapesht|1000|Dunay marvaridi va termal hammomlar|Budapesht,Balaton,Eger
+Polsha|🇵🇱|Y|Varshava|950|Tarixiy markazlar va tuz konlari|Krakov,Varshava,Gdansk
+Xorvatiya|🇭🇷|Y|Zagreb|1300|Adriatika sohili va sharsharalar|Dubrovnik,Split,Plitvitse
+Norvegiya|🇳🇴|Y|Oslo|3000|Fyordlar va shimol nurlari|Bergen,Tromso,Geyranger
+Shvetsiya|🇸🇪|Y|Stokgolm|2300|Skandinav dizayni va arxipelag|Stokgolm,Gyoteborg,Abisko
+Daniya|🇩🇰|Y|Kopengagen|2300|Hygge, Lego va dengiz sohili|Kopengagen,Odense,Orhus
+Finlyandiya|🇫🇮|Y|Xelsinki|2400|Sauna, ko'llar va Santa Klaus yurti|Rovaniemi,Xelsinki,Saariselka
+Irlandiya|🇮🇪|Y|Dublin|1900|Yashil dalalar va qadimiy qal'alar|Dublin,Mohar,Kerri
+Ruminiya|🇷🇴|Y|Buxarest|900|Drakula qal'asi va Karpat tog'lari|Brashov,Sibiu,Bran
+Bolgariya|🇧🇬|Y|Sofiya|800|Qora dengiz plyajlari va tog' kurortlari|Sofiya,Varna,Plovdiv
+Sloveniya|🇸🇮|Y|Lyublyana|1300|Bled ko'li va yashil tabiat|Bled,Lyublyana,Postojna
+Slovakiya|🇸🇰|Y|Bratislava|950|Tatra tog'lari va qal'alar|Bratislava,Vysoke-Tatry,Koshitse
+Estoniya|🇪🇪|Y|Tallin|1100|O'rta asr Tallin va raqamli davlat|Tallin,Tartu,Parnu
+Latviya|🇱🇻|Y|Riga|1000|Art-nuvo me'morchiligi va Boltiq sohili|Riga,Yurmala,Sigulda
+Litva|🇱🇹|Y|Vilnyus|1000|Barokko shaharlari va qal'alar|Vilnyus,Kaunas,Trakay
+Malta|🇲🇹|Y|Valletta|1400|Ritsarlar tarixi va sof dengiz|Valletta,Gozo,Mdina
+Albaniya|🇦🇱|Y|Tirana|800|Arzon va go'zal Adriatika sohillari|Saranda,Berat,Tirana
+Chernogoriya|🇲🇪|Y|Podgorica|1000|Kotor ko'rfazi va tog' kanyonlari|Kotor,Budva,Durmitor
+Serbiya|🇷🇸|Y|Belgrad|850|Tungi hayot va Dunay qirg'og'i|Belgrad,Novi-Sad,Zlatibor
+Bosniya va Gertsegovina|🇧🇦|Y|Sarayevo|850|Sharq va G'arb uchrashgan joy|Sarayevo,Mostar,Yaytse
+Shimoliy Makedoniya|🇲🇰|Y|Skopye|800|Oxrid ko'li va qadimiy cherkovlar|Oxrid,Skopye,Matka
+Kipr|🇨🇾|Y|Nikosiya|1300|Afrodita oroli va issiq plyajlar|Pafos,Larnaka,Ayia-Napa
+Lyuksemburg|🇱🇺|Y|Lyuksemburg|1600|Kichik, ammo qal'alarga boy davlat|Lyuksemburg,Vianden,Echternax
+Monako|🇲🇨|Y|Monako|3000|Hashamat, kazino va Formula-1|Monte-Karlo,Port-Gerkules,Okeanografiya muzeyi
+Andorra|🇦🇩|Y|Andorra-la-Vella|1300|Pireney tog'larida chang'i kurorti|Grandvalira,Andorra,Kaldea
+San-Marino|🇸🇲|Y|San-Marino|1400|Dunyoning eng qadimiy respublikasi|Titano tog'i,Guaita,Chesta
+Moldova|🇲🇩|Y|Kishinyov|750|Vino yerto'lalari va qishloq turizmi|Kriova,Orxey,Kishinyov
+Turkiya|🇹🇷|A|Anqara|1000|Istanbul, Kappadokiya va shifobaxsh sohillar|Istanbul,Kappadokiya,Antalya
+Gruziya|🇬🇪|A|Tbilisi|800|Mehmondo'stlik, vino va Kavkaz tog'lari|Tbilisi,Batumi,Kazbegi
+Armaniston|🇦🇲|A|Yerevan|750|Qadimiy monastirlar va Ararat manzarasi|Yerevan,Sevan,Garni
+Ozarbayjon|🇦🇿|A|Boku|850|Olov yurti va zamonaviy Boku|Boku,Sheki,Gabala
+Qozog'iston|🇰🇿|A|Astana|600|Keng dasht va zamonaviy Astana|Olmaota,Astana,Charin kanyoni
+Qirg'iziston|🇰🇬|A|Bishkek|550|Issiq-ko'l va ko'chmanchi madaniyat|Issiq-ko'l,Karakol,Song-ko'l
+Tojikiston|🇹🇯|A|Dushanbe|600|Pomir tog'lari va Fan tog'lari|Dushanbe,Pomir,Iskandarko'l
+Turkmaniston|🇹🇲|A|Ashxobod|900|Darvoza krateri va oq marmar shahar|Darvoza,Ashxobod,Nisa
+O'zbekiston|🇺🇿|A|Toshkent|500|Buyuk Ipak yo'li durdonalari|Samarqand,Buxoro,Xiva
+Xitoy|🇨🇳|A|Pekin|1600|Buyuk Xitoy devori va qadimiy madaniyat|Pekin,Shanxay,Sian
+Janubiy Koreya|🇰🇷|A|Seul|1900|K-pop, zamonaviy shaharlar va oshxona|Seul,Busan,Jeju
+Tayvan|🇹🇼|A|Taypey|1700|Tungi bozorlar va tog' chaylalari|Taypey,Tarok,Jiufen
+Tailand|🇹🇭|A|Bangkok|1200|Tropik plyajlar va oltin ibodatxonalar|Bangkok,Phuket,Chiangmay
+Vetnam|🇻🇳|A|Xanoy|1100|Ha Long ko'rfazi va ajoyib ko'cha taomlari|Ha-Long,Xoyan,Xoshimin
+Indoneziya|🇮🇩|A|Jakarta|1500|Bali oroli va vulqonlar|Bali,Yogyakarta,Komodo
+Malayziya|🇲🇾|A|Kuala-Lumpur|1200|Petronas minoralari va yomg'ir o'rmonlari|Kuala-Lumpur,Langkavi,Penang
+Singapur|🇸🇬|A|Singapur|2000|Kelajak shahri va bog'lar|Marina-Bay,Sentosa,Gardens by the Bay
+Filippin|🇵🇭|A|Manila|1400|7000 dan ortiq orol va marjon rifleri|Palavan,Sebu,Boracay
+Hindiston|🇮🇳|A|Dehli|1100|Tojmahal, ranglar va ruhiy sayohat|Agra,Jaypur,Goa
+Shri-Lanka|🇱🇰|A|Kolombo|1100|Choy plantatsiyalari va fillar|Sigiriya,Kendi,Galle
+Nepal|🇳🇵|A|Katmandu|1000|Everest va buddaviy ziyoratgohlar|Katmandu,Pokxara,Everest bazaviy lageri
+Butan|🇧🇹|A|Timpu|2200|Baxt mamlakati va tog' monastirlari|Paro,Timpu,Taktsang
+Maldiv orollari|🇲🇻|A|Male|2800|Suv ustidagi villalar va billur dengiz|Male,Maafushi,Ari atolli
+BAA|🇦🇪|A|Abu-Dabi|1500|Dubay osmono'par binolari va cho'l safari|Dubay,Abu-Dabi,Fujayra
+Isroil|🇮🇱|A|Quddus|1800|Muqaddas shaharlar va O'lik dengiz|Quddus,Tel-Aviv,O'lik dengiz
+Iordaniya|🇯🇴|A|Ammon|1500|Petra va Vadi-Rum cho'li|Petra,Vadi-Rum,Akaba
+Ummon|🇴🇲|A|Maskat|1700|Fyordlar, cho'llar va qadimiy qal'alar|Maskat,Vahiba,Salola
+Qatar|🇶🇦|A|Doha|1800|Zamonaviy me'morchilik va cho'l|Doha,Ichki dengiz,Al-Zubara
+Saudiya Arabistoni|🇸🇦|A|Ar-Riyod|1600|Makka, Madina va Al-Ula|Makka,Madina,Al-Ula
+Bahrayn|🇧🇭|A|Manama|1400|Marvarid orollari va qadimiy qal'alar|Manama,Muharraq,Bahrayn qal'asi
+Kuvayt|🇰🇼|A|Kuvayt|1400|Fors ko'rfazi bo'yidagi zamonaviy davlat|Kuvayt minoralari,Failaka,Grand Mosque
+Livan|🇱🇧|A|Bayrut|1300|O'rta yer dengizi marvaridi|Bayrut,Baalbek,Byublos
+Kambodja|🇰🇭|A|Pnompen|1000|Angkor Vat ma'badlari|Siem-Riep,Pnompen,Sixanukvil
+Laos|🇱🇦|A|Vyentyan|950|Mekong daryosi va sokin shaharlar|Luangprabang,Vyentyan,Vang-Vieng
+Myanmar|🇲🇲|A|Naypido|1000|Bagan ibodatxonalari va oltin stupalar|Bagan,Yangon,Inle ko'li
+Mo'g'uliston|🇲🇳|A|Ulan-Bator|1500|Cheksiz dasht va ko'chmanchi hayot|Ulan-Bator,Gobi,Xuvsgul
+Bruney|🇧🇳|A|Bandar-Seri-Begavan|1600|Oltin masjidlar va tropik o'rmonlar|Omar Ali Saifuddien,Ulu Temburong,Kampong Ayer
+Misr|🇪🇬|F|Qohira|1100|Piramidalar, Nil va Qizil dengiz|Giza,Luksor,Xurgada
+Marokash|🇲🇦|F|Rabat|1200|Rang-barang bozorlar va Sahara|Marrakesh,Fes,Shefshauen
+Tunis|🇹🇳|F|Tunis|950|Karfagen xarobalari va Sahara|Tunis,Sidi-Bu-Said,Duz
+Jazoir|🇩🇿|F|Jazoir|1000|Sahara va Rim davri shaharlari|Jazoir,Timgad,Tassili
+Tanzaniya|🇹🇿|F|Dodoma|2300|Serengeti safari va Kilimanjaro|Serengeti,Zanzibar,Kilimanjaro
+Keniya|🇰🇪|F|Nayrobi|2000|Masai-Mara va katta beshlik safari|Masai-Mara,Nayrobi,Amboseli
+JAR|🇿🇦|F|Pretoriya|2100|Keyptaun, safari va vino vodiylari|Keyptaun,Kruger,Bog' yo'li
+Mavrikiy|🇲🇺|F|Port-Lui|2300|Hind okeanidagi tropik jannat|Le-Morn,Grand-Bey,Chamarel
+Seyshel orollari|🇸🇨|F|Viktoriya|2900|Granit qoyalar va oppoq plyajlar|Mahe,Praslin,La-Dig
+Namibiya|🇳🇦|F|Vindxuk|2200|Dunyoning eng qadimiy cho'li|Sossusvlei,Etosha,Skeleton Coast
+Botsvana|🇧🇼|F|Gaborone|2700|Okavango deltasi va filler podasi|Okavango,Chobe,Kalaxari
+Uganda|🇺🇬|F|Kampala|2100|Tog' gorillalari bilan uchrashuv|Bvindi,Murchison,Entebbe
+Ruanda|🇷🇼|F|Kigali|2500|Gorillalar va ming tepalik yurti|Vulkanlar,Kigali,Nyungve
+Senegal|🇸🇳|F|Dakar|1300|Afrika musiqasi va Gor oroli|Dakar,Gor oroli,Pink ko'l
+Gana|🇬🇭|F|Akkra|1400|Tarix qal'alari va madaniyat|Akkra,Keyp-Kost,Kakum
+Efiopiya|🇪🇹|F|Addis-Abeba|1300|Qadimiy qoya cherkovlar va qahva vatani|Lalibela,Addis-Abeba,Danakil
+Madagaskar|🇲🇬|F|Antananarivo|1900|Lemurlar va baobablar yo'li|Baobablar xiyoboni,Andasibe,Tsingi
+Zambiya|🇿🇲|F|Lusaka|2000|Viktoriya sharsharasi|Livingston,Janubiy Luangva,Zambezi
+Zimbabve|🇿🇼|F|Xarare|1900|Viktoriya sharsharasi va xwange safari|Viktoriya sharsharasi,Xwange,Matopos
+Kabo-Verde|🇨🇻|F|Praya|1500|Atlantika okeanidagi quyoshli orollar|Sal,Santiago,Boa-Vista
+AQSH|🇺🇸|S|Vashington|2800|Nyu-York, Las-Vegas va milliy bog'lar|Nyu-York,Los-Anjeles,Grand-Kanyon
+Kanada|🇨🇦|S|Ottava|2600|Rokki tog'lari va Niagara sharsharasi|Banff,Toronto,Vankuver
+Meksika|🇲🇽|S|Mexiko|1700|Mayya piramidalari va Karib plyajlari|Kankun,Chichen-Itsa,Mexiko
+Kuba|🇨🇺|S|Gavana|1700|Retro avtomobillar va salsa|Gavana,Varadero,Trinidad
+Kosta-Rika|🇨🇷|S|San-Xose|2100|Yomg'ir o'rmonlari va ekoturizm|Arenal,Monteverde,Manuel-Antonio
+Panama|🇵🇦|S|Panama|1800|Panama kanali va tropik orollar|Panama kanali,San-Blas,Bokas-del-Toro
+Yamayka|🇯🇲|S|Kingston|2000|Regge, plyajlar va sharsharalar|Montego-Bey,Negril,Dann-River
+Bagama orollari|🇧🇸|S|Nassau|2800|Pushti qumli plyajlar va suzuvchi cho'chqalar|Nassau,Exuma,Paradise Island
+Dominikana|🇩🇴|S|Santo-Domingo|1700|Hamma narsa kiritilgan kurortlar|Punta-Kana,Santo-Domingo,Samana
+Gvatemala|🇬🇹|S|Gvatemala|1400|Mayya sivilizatsiyasi va vulqonlar|Tikal,Antigua,Atitlan
+Belize|🇧🇿|S|Belmopan|1900|Katta ko'k tuynuk va marjon rifi|Ambergris-Key,Katta ko'k tuynuk,Kaye-Kolker
+Braziliya|🇧🇷|J|Braziliya|2200|Rio karnavali, Amazonka va plyajlar|Rio-de-Janeyro,Iguasu,Amazonka
+Argentina|🇦🇷|J|Buenos-Ayres|2300|Tango, Patagoniya va muzliklar|Buenos-Ayres,Patagoniya,Iguasu
+Chili|🇨🇱|J|Santyago|2400|Atakama cho'li va And tog'lari|Atakama,Santyago,Torres-del-Paine
+Peru|🇵🇪|J|Lima|1900|Machu-Pikchu va Inklar merosi|Kusko,Machu-Pikchu,Titikaka
+Kolumbiya|🇨🇴|J|Bogota|1600|Qahva vodiysi va Karib sohili|Kartaxena,Medelin,Bogota
+Ekvador|🇪🇨|J|Kito|1900|Galapagos orollari va And vulqonlari|Galapagos,Kito,Kotopaksi
+Boliviya|🇧🇴|J|Sukre|1500|Uyuni tuz cho'li va And platosi|Uyuni,La-Pas,Titikaka
+Urugvay|🇺🇾|J|Montevideo|1800|Sokin plyajlar va gaucho madaniyati|Montevideo,Punta-del-Este,Kolonia
+Avstraliya|🇦🇺|O|Kanberra|2900|Sidney, kenguru va Buyuk to'siq rifi|Sidney,Melburn,Katta to'siq rifi
+Yangi Zelandiya|🇳🇿|O|Vellington|3000|Hobbiton, fyordlar va ekstremal sport|Oklend,Kvinstaun,Rotorua
+Fiji|🇫🇯|O|Suva|2900|Tinch okeani orollari va marjon rifi|Denarau,Mamanuka,Yasava
+Tahiti|🇵🇫|O|Papeete|3400|Bora-Bora va suv ustidagi bungalolar|Bora-Bora,Moorea,Papeete
+Samoa|🇼🇸|O|Apia|2600|Polineziya madaniyati va sokin plyajlar|Upolu,Savaii,To Sua okean xandagi
+Palau|🇵🇼|O|Ngerulmud|3100|Dunyodagi eng yaxshi sho'ng'ish joylari|Rock Islands,Meduza ko'li,Peleliu`;
+      const EN = `Japan|Tokyo|Land of sakura, technology and ancient temples|Tokyo,Kyoto,Mount Fuji
+Iceland|Reykjavik|Land of northern lights, volcanoes and geysers|Blue Lagoon,Gullfoss,Vik
+Italy|Rome|Art, history and unforgettable cuisine|Rome,Venice,Florence
+France|Paris|Eiffel Tower, the Louvre and champagne|Paris,Nice,Versailles
+Spain|Madrid|Flamenco, beaches and Gaudí's architecture|Barcelona,Madrid,Seville
+Germany|Berlin|Castles, the Rhine valley and beer festivals|Berlin,Munich,Neuschwanstein
+United Kingdom|London|Royal traditions and world-class museums|London,Edinburgh,Oxford
+Greece|Athens|Ancient civilization and blue islands|Athens,Santorini,Mykonos
+Portugal|Lisbon|Ocean coasts and colorful cities|Lisbon,Porto,Algarve
+Switzerland|Bern|Alps, lakes and chocolate|Zurich,Lucerne,Interlaken
+Austria|Vienna|Classical music and imperial palaces|Vienna,Salzburg,Hallstatt
+Netherlands|Amsterdam|Canals, tulips and bicycles|Amsterdam,Keukenhof,Rotterdam
+Belgium|Brussels|Medieval towns and chocolate|Brussels,Bruges,Ghent
+Czechia|Prague|Fairy-tale Prague and castles|Prague,Český Krumlov,Karlovy Vary
+Hungary|Budapest|Pearl of the Danube and thermal baths|Budapest,Balaton,Eger
+Poland|Warsaw|Historic centers and salt mines|Krakow,Warsaw,Gdansk
+Croatia|Zagreb|Adriatic coast and waterfalls|Dubrovnik,Split,Plitvice
+Norway|Oslo|Fjords and northern lights|Bergen,Tromsø,Geiranger
+Sweden|Stockholm|Scandinavian design and archipelago|Stockholm,Gothenburg,Abisko
+Denmark|Copenhagen|Hygge, Lego and seaside|Copenhagen,Odense,Aarhus
+Finland|Helsinki|Saunas, lakes and Santa's homeland|Rovaniemi,Helsinki,Saariselkä
+Ireland|Dublin|Green fields and ancient castles|Dublin,Cliffs of Moher,Kerry
+Romania|Bucharest|Dracula's castle and the Carpathians|Brașov,Sibiu,Bran
+Bulgaria|Sofia|Black Sea beaches and mountain resorts|Sofia,Varna,Plovdiv
+Slovenia|Ljubljana|Lake Bled and green nature|Bled,Ljubljana,Postojna
+Slovakia|Bratislava|Tatra mountains and castles|Bratislava,High Tatras,Košice
+Estonia|Tallinn|Medieval Tallinn and a digital state|Tallinn,Tartu,Pärnu
+Latvia|Riga|Art Nouveau and the Baltic coast|Riga,Jūrmala,Sigulda
+Lithuania|Vilnius|Baroque cities and castles|Vilnius,Kaunas,Trakai
+Malta|Valletta|Knights' history and crystal-clear sea|Valletta,Gozo,Mdina
+Albania|Tirana|Affordable and beautiful Adriatic coast|Sarandë,Berat,Tirana
+Montenegro|Podgorica|Bay of Kotor and mountain canyons|Kotor,Budva,Durmitor
+Serbia|Belgrade|Nightlife and the Danube riverside|Belgrade,Novi Sad,Zlatibor
+Bosnia and Herzegovina|Sarajevo|Where East meets West|Sarajevo,Mostar,Jajce
+North Macedonia|Skopje|Lake Ohrid and ancient churches|Ohrid,Skopje,Matka
+Cyprus|Nicosia|Island of Aphrodite and warm beaches|Paphos,Larnaca,Ayia Napa
+Luxembourg|Luxembourg|A small country rich in castles|Luxembourg,Vianden,Echternach
+Monaco|Monaco|Luxury, casinos and Formula 1|Monte Carlo,Port Hercule,Oceanographic Museum
+Andorra|Andorra la Vella|Ski resorts in the Pyrenees|Grandvalira,Andorra la Vella,Caldea
+San Marino|San Marino|The world's oldest republic|Mount Titano,Guaita,Cesta
+Moldova|Chisinau|Wine cellars and rural tourism|Cricova,Orheiul Vechi,Chisinau
+Turkey|Ankara|Istanbul, Cappadocia and healing coasts|Istanbul,Cappadocia,Antalya
+Georgia|Tbilisi|Hospitality, wine and the Caucasus|Tbilisi,Batumi,Kazbegi
+Armenia|Yerevan|Ancient monasteries and views of Ararat|Yerevan,Sevan,Garni
+Azerbaijan|Baku|Land of fire and modern Baku|Baku,Sheki,Gabala
+Kazakhstan|Astana|Endless steppe and modern Astana|Almaty,Astana,Charyn Canyon
+Kyrgyzstan|Bishkek|Issyk-Kul and nomadic culture|Issyk-Kul,Karakol,Song-Kol
+Tajikistan|Dushanbe|Pamir and Fann mountains|Dushanbe,Pamir,Iskanderkul
+Turkmenistan|Ashgabat|Darvaza crater and the white marble city|Darvaza,Ashgabat,Nisa
+Uzbekistan|Tashkent|Treasures of the Great Silk Road|Samarkand,Bukhara,Khiva
+China|Beijing|Great Wall and ancient culture|Beijing,Shanghai,Xi'an
+South Korea|Seoul|K-pop, modern cities and cuisine|Seoul,Busan,Jeju
+Taiwan|Taipei|Night markets and mountain tea houses|Taipei,Taroko,Jiufen
+Thailand|Bangkok|Tropical beaches and golden temples|Bangkok,Phuket,Chiang Mai
+Vietnam|Hanoi|Ha Long Bay and amazing street food|Ha Long,Hoi An,Ho Chi Minh City
+Indonesia|Jakarta|Bali island and volcanoes|Bali,Yogyakarta,Komodo
+Malaysia|Kuala Lumpur|Petronas Towers and rainforests|Kuala Lumpur,Langkawi,Penang
+Singapore|Singapore|City of the future and gardens|Marina Bay,Sentosa,Gardens by the Bay
+Philippines|Manila|Over 7,000 islands and coral reefs|Palawan,Cebu,Boracay
+India|New Delhi|Taj Mahal, colors and spiritual journey|Agra,Jaipur,Goa
+Sri Lanka|Colombo|Tea plantations and elephants|Sigiriya,Kandy,Galle
+Nepal|Kathmandu|Everest and Buddhist shrines|Kathmandu,Pokhara,Everest Base Camp
+Bhutan|Thimphu|Land of happiness and mountain monasteries|Paro,Thimphu,Tiger's Nest
+Maldives|Malé|Overwater villas and crystal-clear sea|Malé,Maafushi,Ari Atoll
+UAE|Abu Dhabi|Dubai skyscrapers and desert safari|Dubai,Abu Dhabi,Fujairah
+Israel|Jerusalem|Holy cities and the Dead Sea|Jerusalem,Tel Aviv,Dead Sea
+Jordan|Amman|Petra and the Wadi Rum desert|Petra,Wadi Rum,Aqaba
+Oman|Muscat|Fjords, deserts and ancient forts|Muscat,Wahiba Sands,Salalah
+Qatar|Doha|Modern architecture and the desert|Doha,Inland Sea,Al Zubarah
+Saudi Arabia|Riyadh|Mecca, Medina and AlUla|Mecca,Medina,AlUla
+Bahrain|Manama|Pearl islands and ancient forts|Manama,Muharraq,Bahrain Fort
+Kuwait|Kuwait City|Modern state on the Persian Gulf|Kuwait Towers,Failaka,Grand Mosque
+Lebanon|Beirut|Pearl of the Mediterranean|Beirut,Baalbek,Byblos
+Cambodia|Phnom Penh|Angkor Wat temples|Siem Reap,Phnom Penh,Sihanoukville
+Laos|Vientiane|The Mekong and quiet towns|Luang Prabang,Vientiane,Vang Vieng
+Myanmar|Naypyidaw|Bagan temples and golden stupas|Bagan,Yangon,Inle Lake
+Mongolia|Ulaanbaatar|Endless steppe and nomadic life|Ulaanbaatar,Gobi,Khövsgöl
+Brunei|Bandar Seri Begawan|Golden mosques and tropical forests|Omar Ali Saifuddien Mosque,Ulu Temburong,Kampong Ayer
+Egypt|Cairo|Pyramids, the Nile and the Red Sea|Giza,Luxor,Hurghada
+Morocco|Rabat|Colorful bazaars and the Sahara|Marrakesh,Fes,Chefchaouen
+Tunisia|Tunis|Carthage ruins and the Sahara|Tunis,Sidi Bou Said,Douz
+Algeria|Algiers|Sahara and Roman-era cities|Algiers,Timgad,Tassili
+Tanzania|Dodoma|Serengeti safari and Kilimanjaro|Serengeti,Zanzibar,Kilimanjaro
+Kenya|Nairobi|Masai Mara and the Big Five safari|Masai Mara,Nairobi,Amboseli
+South Africa|Pretoria|Cape Town, safari and wine valleys|Cape Town,Kruger,Garden Route
+Mauritius|Port Louis|Tropical paradise in the Indian Ocean|Le Morne,Grand Baie,Chamarel
+Seychelles|Victoria|Granite rocks and white beaches|Mahé,Praslin,La Digue
+Namibia|Windhoek|The world's oldest desert|Sossusvlei,Etosha,Skeleton Coast
+Botswana|Gaborone|Okavango Delta and elephant herds|Okavango,Chobe,Kalahari
+Uganda|Kampala|Meet the mountain gorillas|Bwindi,Murchison,Entebbe
+Rwanda|Kigali|Gorillas and the land of a thousand hills|Volcanoes,Kigali,Nyungwe
+Senegal|Dakar|African music and Gorée Island|Dakar,Gorée Island,Pink Lake
+Ghana|Accra|Historic forts and culture|Accra,Cape Coast,Kakum
+Ethiopia|Addis Ababa|Ancient rock churches and birthplace of coffee|Lalibela,Addis Ababa,Danakil
+Madagascar|Antananarivo|Lemurs and the Avenue of the Baobabs|Avenue of the Baobabs,Andasibe,Tsingy
+Zambia|Lusaka|Victoria Falls|Livingstone,South Luangwa,Zambezi
+Zimbabwe|Harare|Victoria Falls and Hwange safari|Victoria Falls,Hwange,Matopos
+Cape Verde|Praia|Sunny islands in the Atlantic|Sal,Santiago,Boa Vista
+USA|Washington, D.C.|New York, Las Vegas and national parks|New York,Los Angeles,Grand Canyon
+Canada|Ottawa|Rocky Mountains and Niagara Falls|Banff,Toronto,Vancouver
+Mexico|Mexico City|Mayan pyramids and Caribbean beaches|Cancún,Chichén Itzá,Mexico City
+Cuba|Havana|Vintage cars and salsa|Havana,Varadero,Trinidad
+Costa Rica|San José|Rainforests and ecotourism|Arenal,Monteverde,Manuel Antonio
+Panama|Panama City|Panama Canal and tropical islands|Panama Canal,San Blas,Bocas del Toro
+Jamaica|Kingston|Reggae, beaches and waterfalls|Montego Bay,Negril,Dunn's River
+Bahamas|Nassau|Pink-sand beaches and swimming pigs|Nassau,Exuma,Paradise Island
+Dominican Republic|Santo Domingo|All-inclusive resorts|Punta Cana,Santo Domingo,Samaná
+Guatemala|Guatemala City|Mayan civilization and volcanoes|Tikal,Antigua,Atitlán
+Belize|Belmopan|Great Blue Hole and coral reef|Ambergris Caye,Great Blue Hole,Caye Caulker
+Brazil|Brasília|Rio carnival, the Amazon and beaches|Rio de Janeiro,Iguazu,Amazon
+Argentina|Buenos Aires|Tango, Patagonia and glaciers|Buenos Aires,Patagonia,Iguazu
+Chile|Santiago|Atacama Desert and the Andes|Atacama,Santiago,Torres del Paine
+Peru|Lima|Machu Picchu and the Inca heritage|Cusco,Machu Picchu,Titicaca
+Colombia|Bogotá|Coffee region and the Caribbean coast|Cartagena,Medellín,Bogotá
+Ecuador|Quito|Galápagos and Andean volcanoes|Galápagos,Quito,Cotopaxi
+Bolivia|Sucre|Uyuni salt flat and the Andean plateau|Uyuni,La Paz,Titicaca
+Uruguay|Montevideo|Quiet beaches and gaucho culture|Montevideo,Punta del Este,Colonia
+Australia|Canberra|Sydney, kangaroos and the Great Barrier Reef|Sydney,Melbourne,Great Barrier Reef
+New Zealand|Wellington|Hobbiton, fjords and extreme sports|Auckland,Queenstown,Rotorua
+Fiji|Suva|Pacific islands and coral reef|Denarau,Mamanuca,Yasawa
+Tahiti|Papeete|Bora Bora and overwater bungalows|Bora Bora,Moorea,Papeete
+Samoa|Apia|Polynesian culture and quiet beaches|Upolu,Savai'i,To Sua Ocean Trench
+Palau|Ngerulmud|World's best diving spots|Rock Islands,Jellyfish Lake,Peleliu`;
+      const RU = `Япония|Токио|Страна сакуры, технологий и древних храмов|Токио,Киото,Гора Фудзи
+Исландия|Рейкьявик|Страна северного сияния, вулканов и гейзеров|Голубая лагуна,Гюдльфосс,Вик
+Италия|Рим|Искусство, история и незабываемая кухня|Рим,Венеция,Флоренция
+Франция|Париж|Эйфелева башня, Лувр и шампанское|Париж,Ницца,Версаль
+Испания|Мадрид|Фламенко, пляжи и архитектура Гауди|Барселона,Мадрид,Севилья
+Германия|Берлин|Замки, долина Рейна и пивные фестивали|Берлин,Мюнхен,Нойшванштайн
+Великобритания|Лондон|Королевские традиции и музеи мирового уровня|Лондон,Эдинбург,Оксфорд
+Греция|Афины|Древняя цивилизация и синие острова|Афины,Санторини,Миконос
+Португалия|Лиссабон|Океанское побережье и разноцветные города|Лиссабон,Порту,Алгарве
+Швейцария|Берн|Альпы, озёра и шоколад|Цюрих,Люцерн,Интерлакен
+Австрия|Вена|Классическая музыка и императорские дворцы|Вена,Зальцбург,Гальштат
+Нидерланды|Амстердам|Каналы, тюльпаны и велосипеды|Амстердам,Кёкенхоф,Роттердам
+Бельгия|Брюссель|Средневековые города и шоколад|Брюссель,Брюгге,Гент
+Чехия|Прага|Сказочная Прага и замки|Прага,Чески-Крумлов,Карловы Вары
+Венгрия|Будапешт|Жемчужина Дуная и термальные бани|Будапешт,Балатон,Эгер
+Польша|Варшава|Исторические центры и соляные шахты|Краков,Варшава,Гданьск
+Хорватия|Загреб|Адриатическое побережье и водопады|Дубровник,Сплит,Плитвицкие озёра
+Норвегия|Осло|Фьорды и северное сияние|Берген,Тромсё,Гейрангер
+Швеция|Стокгольм|Скандинавский дизайн и архипелаг|Стокгольм,Гётеборг,Абиску
+Дания|Копенгаген|Хюгге, Лего и морское побережье|Копенгаген,Оденсе,Орхус
+Финляндия|Хельсинки|Сауны, озёра и родина Санта-Клауса|Рованиеми,Хельсинки,Саариселькя
+Ирландия|Дублин|Зелёные луга и древние замки|Дублин,Утёсы Мохер,Керри
+Румыния|Бухарест|Замок Дракулы и Карпаты|Брашов,Сибиу,Бран
+Болгария|София|Пляжи Чёрного моря и горные курорты|София,Варна,Пловдив
+Словения|Любляна|Озеро Блед и зелёная природа|Блед,Любляна,Постойна
+Словакия|Братислава|Татры и замки|Братислава,Высокие Татры,Кошице
+Эстония|Таллин|Средневековый Таллин и цифровое государство|Таллин,Тарту,Пярну
+Латвия|Рига|Модерн и побережье Балтики|Рига,Юрмала,Сигулда
+Литва|Вильнюс|Города в стиле барокко и замки|Вильнюс,Каунас,Тракай
+Мальта|Валлетта|История рыцарей и чистое море|Валлетта,Гозо,Мдина
+Албания|Тирана|Доступное и красивое побережье Адриатики|Саранда,Берат,Тирана
+Черногория|Подгорица|Бухта Котор и горные каньоны|Котор,Будва,Дурмитор
+Сербия|Белград|Ночная жизнь и набережные Дуная|Белград,Нови-Сад,Златибор
+Босния и Герцеговина|Сараево|Место встречи Востока и Запада|Сараево,Мостар,Яйце
+Северная Македония|Скопье|Охридское озеро и древние церкви|Охрид,Скопье,Матка
+Кипр|Никосия|Остров Афродиты и тёплые пляжи|Пафос,Ларнака,Айя-Напа
+Люксембург|Люксембург|Маленькая страна, богатая замками|Люксембург,Вианден,Эхтернах
+Монако|Монако|Роскошь, казино и Формула-1|Монте-Карло,Порт-Эркюль,Океанографический музей
+Андорра|Андорра-ла-Велья|Горнолыжные курорты в Пиренеях|Грандвалира,Андорра-ла-Велья,Кальдея
+Сан-Марино|Сан-Марино|Старейшая республика мира|Гора Титано,Гуаита,Честа
+Молдова|Кишинёв|Винные погреба и сельский туризм|Крикова,Старый Орхей,Кишинёв
+Турция|Анкара|Стамбул, Каппадокия и целебные побережья|Стамбул,Каппадокия,Анталья
+Грузия|Тбилиси|Гостеприимство, вино и Кавказ|Тбилиси,Батуми,Казбеги
+Армения|Ереван|Древние монастыри и вид на Арарат|Ереван,Севан,Гарни
+Азербайджан|Баку|Страна огней и современный Баку|Баку,Шеки,Габала
+Казахстан|Астана|Бескрайняя степь и современная Астана|Алматы,Астана,Чарынский каньон
+Кыргызстан|Бишкек|Иссык-Куль и кочевая культура|Иссык-Куль,Каракол,Сон-Куль
+Таджикистан|Душанбе|Памир и Фанские горы|Душанбе,Памир,Искандеркуль
+Туркменистан|Ашхабад|Кратер Дарваза и город белого мрамора|Дарваза,Ашхабад,Ниса
+Узбекистан|Ташкент|Сокровища Великого Шёлкового пути|Самарканд,Бухара,Хива
+Китай|Пекин|Великая Китайская стена и древняя культура|Пекин,Шанхай,Сиань
+Южная Корея|Сеул|K-pop, современные города и кухня|Сеул,Пусан,Чеджу
+Тайвань|Тайбэй|Ночные рынки и горные чайные дома|Тайбэй,Тароко,Цзюфэнь
+Таиланд|Бангкок|Тропические пляжи и золотые храмы|Бангкок,Пхукет,Чиангмай
+Вьетнам|Ханой|Бухта Халонг и потрясающая уличная еда|Халонг,Хойан,Хошимин
+Индонезия|Джакарта|Остров Бали и вулканы|Бали,Джокьякарта,Комодо
+Малайзия|Куала-Лумпур|Башни Петронас и тропические леса|Куала-Лумпур,Лангкави,Пенанг
+Сингапур|Сингапур|Город будущего и сады|Марина-Бэй,Сентоза,Сады у залива
+Филиппины|Манила|Более 7000 островов и коралловые рифы|Палаван,Себу,Боракай
+Индия|Нью-Дели|Тадж-Махал, краски и духовное путешествие|Агра,Джайпур,Гоа
+Шри-Ланка|Коломбо|Чайные плантации и слоны|Сигирия,Канди,Галле
+Непал|Катманду|Эверест и буддийские святыни|Катманду,Покхара,Базовый лагерь Эвереста
+Бутан|Тхимпху|Страна счастья и горные монастыри|Паро,Тхимпху,Гнездо тигрицы
+Мальдивы|Мале|Виллы над водой и кристальное море|Мале,Маафуши,Атолл Ари
+ОАЭ|Абу-Даби|Небоскрёбы Дубая и сафари в пустыне|Дубай,Абу-Даби,Фуджейра
+Израиль|Иерусалим|Святые города и Мёртвое море|Иерусалим,Тель-Авив,Мёртвое море
+Иордания|Амман|Петра и пустыня Вади-Рам|Петра,Вади-Рам,Акаба
+Оман|Маскат|Фьорды, пустыни и древние крепости|Маскат,Вахиба,Салала
+Катар|Доха|Современная архитектура и пустыня|Доха,Внутреннее море,Аз-Зубара
+Саудовская Аравия|Эр-Рияд|Мекка, Медина и Аль-Ула|Мекка,Медина,Аль-Ула
+Бахрейн|Манама|Жемчужные острова и древние форты|Манама,Мухаррак,Форт Бахрейн
+Кувейт|Эль-Кувейт|Современное государство на берегу Персидского залива|Башни Кувейта,Файлака,Большая мечеть
+Ливан|Бейрут|Жемчужина Средиземноморья|Бейрут,Баальбек,Библ
+Камбоджа|Пномпень|Храмы Ангкор-Вата|Сиемреап,Пномпень,Сиануквиль
+Лаос|Вьентьян|Меконг и тихие городки|Луангпрабанг,Вьентьян,Вангвьенг
+Мьянма|Нейпьидо|Храмы Багана и золотые ступы|Баган,Янгон,Озеро Инле
+Монголия|Улан-Батор|Бескрайняя степь и кочевая жизнь|Улан-Батор,Гоби,Хубсугул
+Бруней|Бандар-Сери-Бегаван|Золотые мечети и тропические леса|Мечеть Омара Али Сайфуддина,Улу-Тембуронг,Кампонг-Айер
+Египет|Каир|Пирамиды, Нил и Красное море|Гиза,Луксор,Хургада
+Марокко|Рабат|Яркие базары и Сахара|Марракеш,Фес,Шефшауэн
+Тунис|Тунис|Руины Карфагена и Сахара|Тунис,Сиди-Бу-Саид,Дуз
+Алжир|Алжир|Сахара и города римской эпохи|Алжир,Тимгад,Тассилин-Аджер
+Танзания|Додома|Сафари в Серенгети и Килиманджаро|Серенгети,Занзибар,Килиманджаро
+Кения|Найроби|Масаи-Мара и сафари «большой пятёрки»|Масаи-Мара,Найроби,Амбосели
+ЮАР|Претория|Кейптаун, сафари и винные долины|Кейптаун,Крюгер,Садовый маршрут
+Маврикий|Порт-Луи|Тропический рай в Индийском океане|Ле-Морн,Гран-Бе,Шамарель
+Сейшелы|Виктория|Гранитные скалы и белые пляжи|Маэ,Праслен,Ла-Диг
+Намибия|Виндхук|Древнейшая пустыня мира|Сессриум,Этоша,Берег скелетов
+Ботсвана|Габороне|Дельта Окаванго и стада слонов|Окаванго,Чобе,Калахари
+Уганда|Кампала|Встреча с горными гориллами|Бвинди,Мерчисон,Энтеббе
+Руанда|Кигали|Гориллы и страна тысячи холмов|Вулканы,Кигали,Ньюнгве
+Сенегал|Дакар|Африканская музыка и остров Горе|Дакар,Остров Горе,Розовое озеро
+Гана|Аккра|Исторические форты и культура|Аккра,Кейп-Кост,Какум
+Эфиопия|Аддис-Абеба|Древние скальные церкви и родина кофе|Лалибела,Аддис-Абеба,Данакиль
+Мадагаскар|Антананариву|Лемуры и аллея баобабов|Аллея баобабов,Андасибе,Цингви
+Замбия|Лусака|Водопад Виктория|Ливингстон,Южная Луангва,Замбези
+Зимбабве|Хараре|Водопад Виктория и сафари в Хванге|Водопад Виктория,Хванге,Матопос
+Кабо-Верде|Прая|Солнечные острова в Атлантике|Саль,Сантьягу,Боавишта
+США|Вашингтон|Нью-Йорк, Лас-Вегас и национальные парки|Нью-Йорк,Лос-Анджелес,Гранд-Каньон
+Канада|Оттава|Скалистые горы и Ниагарский водопад|Банф,Торонто,Ванкувер
+Мексика|Мехико|Пирамиды майя и карибские пляжи|Канкун,Чичен-Ица,Мехико
+Куба|Гавана|Ретро-автомобили и сальса|Гавана,Варадеро,Тринидад
+Коста-Рика|Сан-Хосе|Тропические леса и экотуризм|Ареналь,Монтеверде,Мануэль-Антонио
+Панама|Панама|Панамский канал и тропические острова|Панамский канал,Сан-Блас,Бокас-дель-Торо
+Ямайка|Кингстон|Регги, пляжи и водопады|Монтего-Бей,Негрил,Данс-Ривер
+Багамы|Нассау|Пляжи с розовым песком и плавающие свиньи|Нассау,Эксума,Парадайз-Айленд
+Доминикана|Санто-Доминго|Курорты «всё включено»|Пунта-Кана,Санто-Доминго,Самана
+Гватемала|Гватемала|Цивилизация майя и вулканы|Тикаль,Антигуа,Атитлан
+Белиз|Бельмопан|Большая голубая дыра и коралловый риф|Амбергрис-Кей,Большая голубая дыра,Кей-Колкер
+Бразилия|Бразилиа|Карнавал в Рио, Амазонка и пляжи|Рио-де-Жанейро,Игуасу,Амазонка
+Аргентина|Буэнос-Айрес|Танго, Патагония и ледники|Буэнос-Айрес,Патагония,Игуасу
+Чили|Сантьяго|Пустыня Атакама и Анды|Атакама,Сантьяго,Торрес-дель-Пайне
+Перу|Лима|Мачу-Пикчу и наследие инков|Куско,Мачу-Пикчу,Титикака
+Колумбия|Богота|Кофейный край и карибское побережье|Картахена,Медельин,Богота
+Эквадор|Кито|Галапагосы и вулканы Анд|Галапагосы,Кито,Котопахи
+Боливия|Сукре|Солончак Уюни и плато Анд|Уюни,Ла-Пас,Титикака
+Уругвай|Монтевидео|Тихие пляжи и культура гаучо|Монтевидео,Пунта-дель-Эсте,Колония
+Австралия|Канберра|Сидней, кенгуру и Большой Барьерный риф|Сидней,Мельбурн,Большой Барьерный риф
+Новая Зеландия|Веллингтон|Хоббитон, фьорды и экстрим|Окленд,Квинстаун,Роторуа
+Фиджи|Сува|Острова Тихого океана и коралловый риф|Денарау,Мамануча,Ясава
+Таити|Папеэте|Бора-Бора и бунгало над водой|Бора-Бора,Муреа,Папеэте
+Самоа|Апиа|Полинезийская культура и тихие пляжи|Уполу,Савайи,Океанская впадина То-Суа
+Палау|Нгерулмуд|Лучшие места для дайвинга в мире|Скалистые острова,Озеро медуз,Пелелиу`;
+
+      const T = {
+        uz: {
+          title: "Tourist Farm — 120+ davlatga sayohat",
+          nav_home: "Bosh sahifa",
+          nav_hot: "Mashhur",
+          nav_countries: "Davlatlar",
+          nav_calc: "Kalkulyator",
+          nav_why: "Afzalliklar",
+          nav_contact: "Aloqa",
+          hero_h: "Dunyoni biz bilan <span>kashf eting</span>",
+          hero_p:
+            "Turistik fermamiz orqali 120 dan ortiq davlatga sayohat qiling. Aviachipta, mehmonxona, ekskursiya va viza — hammasi bir joyda, shaffof narxlarda.",
+          b_view: "Davlatlarni ko'rish",
+          b_calc: "Narxni hisoblash",
+          st1: "+ davlat",
+          st2: "+ mamnun mijoz",
+          st3: "yillik tajriba",
+          st4: "/7 qo'llab-quvvatlash",
+          hot_t: "🔥 Eng mashhur yo'nalishlar",
+          hot_s:
+            "Mijozlarimiz eng ko'p tanlagan uchta asosiy yo'nalish — noyob tabiat, qadimiy madaniyat va unutilmas taassurotlar.",
+          c_t: "Barcha davlatlar",
+          c_s: "Qidiring, qit'a bo'yicha saralang va narx bo'yicha tartiblang. Batafsil ma'lumot uchun davlat kartochkasini bosing.",
+          ph_q: "🔎 Davlat yoki shahar nomi...",
+          s_n: "Nomi bo'yicha",
+          s_a: "Narx: arzonidan",
+          s_d: "Narx: qimmatidan",
+          all: "Hammasi",
+          more: "Yana ko'rsatish",
+          empty: "Hech narsa topilmadi 😕",
+          calc_t: "Sayohat narxini hisoblang",
+          calc_s:
+            "Davlat, kunlar, odamlar soni va mehmonxona darajasini tanlang — taxminiy narx darhol chiqadi.",
+          l_country: "Davlat",
+          l_days: "Kunlar soni",
+          l_ppl: "Odamlar soni",
+          l_hotel: "Mehmonxona darajasi",
+          h3: "⭐⭐⭐ Standart",
+          h4: "⭐⭐⭐⭐ Komfort",
+          h5: "⭐⭐⭐⭐⭐ Premium",
+          l_total: "Taxminiy umumiy narx",
+          per: "Bir kishiga",
+          order: "Buyurtma berish",
+          why_t: "Nima uchun biz?",
+          why_s:
+            "Sayohatingiz boshidan oxirigacha xavfsiz va qulay bo'lishi uchun ishlaymiz.",
+          w1t: "Shaffof narxlar",
+          w1p: "Yashirin to'lovlarsiz. Narx kalkulyatorda ko'rinadi, shartnomada qayd etiladi.",
+          w2t: "Viza yordami",
+          w2p: "Hujjatlarni tayyorlash va topshirishda to'liq yordam beramiz.",
+          w3t: "Mahalliy gidlar",
+          w3p: "Har bir yo'nalishda tajribali, o'zbek va rus tilini biluvchi gidlar.",
+          w4t: "Sug'urta",
+          w4p: "Tibbiy va yo'l sug'urtasi har bir paketga kiritilgan.",
+          w5t: "24/7 aloqa",
+          w5p: "Sayohat davomida istalgan vaqtda yordam xizmati siz bilan.",
+          w6t: "Chegirmalar",
+          w6p: "Guruh va doimiy mijozlar uchun 15% gacha chegirma.",
+          how_t: "Qanday ishlaymiz?",
+          how_s: "To'rt oddiy qadam bilan orzuingizdagi sayohatga chiqing.",
+          s1t: "Davlat tanlang",
+          s1p: "Katalogdan yo'nalishni tanlang va narxni hisoblang.",
+          s2t: "Bog'laning",
+          s2p: "Ariza qoldiring, menejer 30 daqiqada javob beradi.",
+          s3t: "Hujjatlar",
+          s3p: "Viza, chipta va mehmonxona bronini biz tayyorlaymiz.",
+          s4t: "Safar boshlanadi!",
+          s4p: "Yo'lga chiqing va yangi taassurotlardan bahramand bo'ling.",
+          con_t: "Biz bilan bog'laning",
+          con_s:
+            "Savollaringiz bormi? Ariza qoldiring — eng yaxshi taklifni tayyorlaymiz.",
+          i_addr: "Manzil",
+          i_addr_v: "Toshkent sh., Amir Temur ko'chasi 108",
+          i_phone: "Telefon",
+          i_mail: "Email",
+          i_tg: "Telegram",
+          i_hours: "Ish vaqti",
+          i_hours_v: "Du–Sha: 09:00 – 19:00",
+          ph_name: "Ismingiz",
+          ph_country: "Qiziqqan davlatingiz",
+          ph_msg: "Xabaringiz (sana, odamlar soni, istaklar...)",
+          send: "Ariza yuborish",
+          toast: "✅ Arizangiz yuborildi! Tez orada bog'lanamiz.",
+          foot: "Barcha huquqlar himoyalangan. Narxlar taxminiy bo'lib, 1 kishi uchun Toshkentdan 7 kunlik paket asosida berilgan.",
+          from_p: "dan / 1 kishi, 7 kun",
+          from7: "dan / 7 kun",
+          m_cap: "Poytaxt",
+          m_about: "Qisqacha",
+          m_see: "Albatta ko'ring",
+          m_season: "Eng yaxshi mavsum",
+          m_incl: "Paketga kiradi",
+          m_incl_v:
+            "✈️ Toshkentdan aviachipta · 🏨 Mehmonxona · 🚐 Transfer · 🧭 Gid · 🛡️ Sug'urta · 🛂 Viza maslahati",
+          m_break: "Narx taqsimoti (1 kishi, 7 kun)",
+          m_total: "Jami",
+          m_calc: "Hisoblash",
+          m_apply: "Ariza qoldirish",
+          gen: "{n} sayohatchilar uchun o'ziga xos madaniyat, mazali milliy taomlar va unutilmas manzaralarni taklif qiladi. Bizning paketimizga transfer, mehmonxona, gid xizmati va tibbiy sug'urta kiradi.",
+          br: "Aviachipta|Mehmonxona|Ovqatlanish|Ekskursiya va gid|Viza va sug'urta",
+        },
+        en: {
+          title: "Tourist Farm — Travel to 120+ countries",
+          nav_home: "Home",
+          nav_hot: "Popular",
+          nav_countries: "Countries",
+          nav_calc: "Calculator",
+          nav_why: "Why us",
+          nav_contact: "Contact",
+          hero_h: "Discover the world <span>with us</span>",
+          hero_p:
+            "Travel to more than 120 countries with our tourist farm. Flights, hotels, excursions and visas — all in one place, at transparent prices.",
+          b_view: "Browse countries",
+          b_calc: "Calculate price",
+          st1: "+ countries",
+          st2: "+ happy clients",
+          st3: "years of experience",
+          st4: "/7 support",
+          hot_t: "🔥 Most popular destinations",
+          hot_s:
+            "The three main destinations our clients choose most — unique nature, ancient culture and unforgettable experiences.",
+          c_t: "All countries",
+          c_s: "Search, filter by continent and sort by price. Click a country card for detailed information.",
+          ph_q: "🔎 Country or city name...",
+          s_n: "By name",
+          s_a: "Price: low to high",
+          s_d: "Price: high to low",
+          all: "All",
+          more: "Show more",
+          empty: "Nothing found 😕",
+          calc_t: "Calculate your trip price",
+          calc_s:
+            "Choose a country, number of days, travelers and hotel class — an estimated price appears instantly.",
+          l_country: "Country",
+          l_days: "Number of days",
+          l_ppl: "Travelers",
+          l_hotel: "Hotel class",
+          h3: "⭐⭐⭐ Standard",
+          h4: "⭐⭐⭐⭐ Comfort",
+          h5: "⭐⭐⭐⭐⭐ Premium",
+          l_total: "Estimated total price",
+          per: "Per person",
+          order: "Place an order",
+          why_t: "Why choose us?",
+          why_s:
+            "We work to make your trip safe and comfortable from start to finish.",
+          w1t: "Transparent prices",
+          w1p: "No hidden fees. The price is shown in the calculator and stated in the contract.",
+          w2t: "Visa support",
+          w2p: "We fully assist with preparing and submitting your documents.",
+          w3t: "Local guides",
+          w3p: "Experienced guides in every destination who speak Uzbek and Russian.",
+          w4t: "Insurance",
+          w4p: "Medical and travel insurance is included in every package.",
+          w5t: "24/7 contact",
+          w5p: "Our support team is with you at any time during your trip.",
+          w6t: "Discounts",
+          w6p: "Up to 15% off for groups and regular customers.",
+          how_t: "How it works",
+          how_s: "Set off on your dream trip in four simple steps.",
+          s1t: "Choose a country",
+          s1p: "Pick a destination from the catalog and calculate the price.",
+          s2t: "Get in touch",
+          s2p: "Leave a request — a manager replies within 30 minutes.",
+          s3t: "Documents",
+          s3p: "We prepare your visa, tickets and hotel booking.",
+          s4t: "The trip begins!",
+          s4p: "Hit the road and enjoy new experiences.",
+          con_t: "Contact us",
+          con_s:
+            "Have questions? Leave a request — we will prepare the best offer.",
+          i_addr: "Address",
+          i_addr_v: "108 Amir Temur Street, Tashkent",
+          i_phone: "Phone",
+          i_mail: "Email",
+          i_tg: "Telegram",
+          i_hours: "Working hours",
+          i_hours_v: "Mon–Sat: 09:00 – 19:00",
+          ph_name: "Your name",
+          ph_country: "Country you are interested in",
+          ph_msg: "Your message (dates, travelers, wishes...)",
+          send: "Send request",
+          toast: "✅ Your request has been sent! We will contact you soon.",
+          foot: "All rights reserved. Prices are approximate, based on a 7-day package per person from Tashkent.",
+          from_p: "from / 1 person, 7 days",
+          from7: "from / 7 days",
+          m_cap: "Capital",
+          m_about: "Overview",
+          m_see: "Must-see places",
+          m_season: "Best season",
+          m_incl: "Package includes",
+          m_incl_v:
+            "✈️ Flight from Tashkent · 🏨 Hotel · 🚐 Transfer · 🧭 Guide · 🛡️ Insurance · 🛂 Visa advice",
+          m_break: "Price breakdown (1 person, 7 days)",
+          m_total: "Total",
+          m_calc: "Calculate",
+          m_apply: "Request a trip",
+          gen: "{n} offers travelers a distinctive culture, delicious local cuisine and unforgettable scenery. Our package includes transfers, a hotel, guide services and medical insurance.",
+          br: "Flights|Hotel|Meals|Excursions and guide|Visa and insurance",
+        },
+        ru: {
+          title: "Tourist Farm — путешествия в 120+ стран",
+          nav_home: "Главная",
+          nav_hot: "Популярное",
+          nav_countries: "Страны",
+          nav_calc: "Калькулятор",
+          nav_why: "Преимущества",
+          nav_contact: "Контакты",
+          hero_h: "Откройте мир <span>вместе с нами</span>",
+          hero_p:
+            "Путешествуйте в более чем 120 стран с нашей туристической фермой. Авиабилеты, отели, экскурсии и визы — всё в одном месте, по прозрачным ценам.",
+          b_view: "Смотреть страны",
+          b_calc: "Рассчитать цену",
+          st1: "+ стран",
+          st2: "+ довольных клиентов",
+          st3: "лет опыта",
+          st4: "/7 поддержка",
+          hot_t: "🔥 Самые популярные направления",
+          hot_s:
+            "Три главных направления, которые наши клиенты выбирают чаще всего — уникальная природа, древняя культура и незабываемые впечатления.",
+          c_t: "Все страны",
+          c_s: "Ищите, фильтруйте по континентам и сортируйте по цене. Нажмите на карточку страны, чтобы узнать подробности.",
+          ph_q: "🔎 Название страны или города...",
+          s_n: "По названию",
+          s_a: "Цена: сначала дешёвые",
+          s_d: "Цена: сначала дорогие",
+          all: "Все",
+          more: "Показать ещё",
+          empty: "Ничего не найдено 😕",
+          calc_t: "Рассчитайте стоимость поездки",
+          calc_s:
+            "Выберите страну, количество дней, туристов и класс отеля — примерная цена появится сразу.",
+          l_country: "Страна",
+          l_days: "Количество дней",
+          l_ppl: "Количество туристов",
+          l_hotel: "Класс отеля",
+          h3: "⭐⭐⭐ Стандарт",
+          h4: "⭐⭐⭐⭐ Комфорт",
+          h5: "⭐⭐⭐⭐⭐ Премиум",
+          l_total: "Примерная общая стоимость",
+          per: "На одного человека",
+          order: "Оформить заказ",
+          why_t: "Почему мы?",
+          why_s:
+            "Мы делаем всё, чтобы ваше путешествие было безопасным и комфортным от начала до конца.",
+          w1t: "Прозрачные цены",
+          w1p: "Без скрытых платежей. Цена видна в калькуляторе и фиксируется в договоре.",
+          w2t: "Помощь с визами",
+          w2p: "Полностью поможем с подготовкой и подачей документов.",
+          w3t: "Местные гиды",
+          w3p: "Опытные гиды в каждом направлении, говорящие на узбекском и русском.",
+          w4t: "Страховка",
+          w4p: "Медицинская и дорожная страховка включена в каждый пакет.",
+          w5t: "Связь 24/7",
+          w5p: "Служба поддержки с вами в любое время во время поездки.",
+          w6t: "Скидки",
+          w6p: "Скидки до 15% для групп и постоянных клиентов.",
+          how_t: "Как мы работаем",
+          how_s: "Отправляйтесь в путешествие мечты за четыре простых шага.",
+          s1t: "Выберите страну",
+          s1p: "Выберите направление в каталоге и рассчитайте цену.",
+          s2t: "Свяжитесь с нами",
+          s2p: "Оставьте заявку — менеджер ответит в течение 30 минут.",
+          s3t: "Документы",
+          s3p: "Визу, билеты и бронь отеля подготовим мы.",
+          s4t: "Путешествие начинается!",
+          s4p: "Отправляйтесь в путь и наслаждайтесь новыми впечатлениями.",
+          con_t: "Свяжитесь с нами",
+          con_s:
+            "Есть вопросы? Оставьте заявку — мы подготовим лучшее предложение.",
+          i_addr: "Адрес",
+          i_addr_v: "г. Ташкент, ул. Амира Темура, 108",
+          i_phone: "Телефон",
+          i_mail: "Email",
+          i_tg: "Telegram",
+          i_hours: "Время работы",
+          i_hours_v: "Пн–Сб: 09:00 – 19:00",
+          ph_name: "Ваше имя",
+          ph_country: "Интересующая страна",
+          ph_msg: "Ваше сообщение (даты, число туристов, пожелания...)",
+          send: "Отправить заявку",
+          toast: "✅ Ваша заявка отправлена! Мы скоро свяжемся с вами.",
+          foot: "Все права защищены. Цены примерные, указаны за 7-дневный пакет на одного человека из Ташкента.",
+          from_p: "от / 1 человек, 7 дней",
+          from7: "от / 7 дней",
+          m_cap: "Столица",
+          m_about: "Коротко",
+          m_see: "Обязательно посетите",
+          m_season: "Лучший сезон",
+          m_incl: "В пакет входит",
+          m_incl_v:
+            "✈️ Авиабилет из Ташкента · 🏨 Отель · 🚐 Трансфер · 🧭 Гид · 🛡️ Страховка · 🛂 Консультация по визе",
+          m_break: "Разбивка цены (1 человек, 7 дней)",
+          m_total: "Итого",
+          m_calc: "Рассчитать",
+          m_apply: "Оставить заявку",
+          gen: "{n} предлагает путешественникам самобытную культуру, вкусную национальную кухню и незабываемые пейзажи. В наш пакет входят трансфер, отель, услуги гида и медицинская страховка.",
+          br: "Авиабилеты|Отель|Питание|Экскурсии и гид|Виза и страховка",
+        },
+      };
+
+      const CONT = {
+        Y: ["Yevropa", "Europe", "Европа"],
+        A: ["Osiyo", "Asia", "Азия"],
+        F: ["Afrika", "Africa", "Африка"],
+        S: ["Shimoliy Amerika", "North America", "Северная Америка"],
+        J: ["Janubiy Amerika", "South America", "Южная Америка"],
+        O: ["Okeaniya", "Oceania", "Океания"],
+      };
+      const CG = {
+        Y: "linear-gradient(135deg,#1d4ed8,#7c3aed)",
+        A: "linear-gradient(135deg,#dc2626,#f59e0b)",
+        F: "linear-gradient(135deg,#b45309,#65a30d)",
+        S: "linear-gradient(135deg,#0891b2,#2563eb)",
+        J: "linear-gradient(135deg,#059669,#0d9488)",
+        O: "linear-gradient(135deg,#0ea5e9,#14b8a6)",
+      };
+      const SEAS = {
+        Y: ["May–Sentyabr", "May–September", "Май–сентябрь"],
+        A: [
+          "Mart–May va Sentyabr–Noyabr",
+          "March–May and September–November",
+          "Март–май и сентябрь–ноябрь",
+        ],
+        F: [
+          "Iyun–Oktyabr (quruq mavsum)",
+          "June–October (dry season)",
+          "Июнь–октябрь (сухой сезон)",
+        ],
+        S: ["May–Sentyabr", "May–September", "Май–сентябрь"],
+        J: ["Dekabr–Mart", "December–March", "Декабрь–март"],
+        O: ["Noyabr–Mart", "November–March", "Ноябрь–март"],
+      };
+      const LI = { uz: 0, en: 1, ru: 2 };
+      const HOT = {
+        Yaponiya: {
+          bg: "linear-gradient(160deg,#be123c,#4c0519 85%)",
+          tag: ["🌸 №1 yo'nalish", "🌸 #1 destination", "🌸 Направление №1"],
+          season: [
+            "Mart–Aprel (sakura), Oktyabr–Noyabr (kuz ranglari)",
+            "March–April (sakura), October–November (autumn colors)",
+            "Март–апрель (сакура), октябрь–ноябрь (осенние краски)",
+          ],
+          long: [
+            "Yaponiya — an'ana va kelajak uyg'unlashgan noyob mamlakat. Tokioning neon ko'chalaridan Kiotoning sokin bambuk o'rmonlari va ming darvozali Fushimi Inari ibodatxonasigacha, Fuji tog'ining ajoyib manzarasidan Osakaning mashhur ko'cha taomlarigacha — har bir kun yangi kashfiyot. Tez yurar Shinkansen poyezdlari, onsen issiq hammomlari, kayseki kechki ovqati va choy marosimi sayohatingizni unutilmas qiladi.",
+            "Japan is a unique country where tradition and the future blend together. From Tokyo's neon streets to Kyoto's quiet bamboo forests and the thousand gates of Fushimi Inari, from views of Mount Fuji to Osaka's famous street food — every day is a new discovery. Shinkansen bullet trains, onsen hot springs, kaiseki dinners and the tea ceremony make the trip unforgettable.",
+            "Япония — уникальная страна, где традиции сливаются с будущим. От неоновых улиц Токио до тихих бамбуковых рощ Киото и тысячи ворот Фушими Инари, от видов на Фудзи до знаменитой уличной еды Осаки — каждый день приносит новое открытие. Скоростные поезда Синкансэн, горячие источники онсэн, ужин кайсэки и чайная церемония сделают поездку незабываемой.",
+          ],
+        },
+        Islandiya: {
+          bg: "linear-gradient(160deg,#0e7490,#0f172a 85%)",
+          tag: [
+            "❄️ Tabiat mo'jizasi",
+            "❄️ Wonder of nature",
+            "❄️ Чудо природы",
+          ],
+          season: [
+            "Sentyabr–Mart (shimol nurlari), Iyun–Avgust (tun yarmida quyosh)",
+            "September–March (northern lights), June–August (midnight sun)",
+            "Сентябрь–март (северное сияние), июнь–август (полуночное солнце)",
+          ],
+          long: [
+            "Islandiya — \"olov va muz yurti\". Bu yerda bir kunda sharshara, qora qumli plyaj, muzlik laguna va faol vulqonni ko'rish mumkin. Oltin halqa marshruti, Blyu Lagun termal suvlari, muz g'orlari va kit kuzatish sayohatlari mashhur. Qish oylarida osmonni bo'yaydigan shimol nurlari (aurora) hayotda bir marta ko'riladigan manzara.",
+            "Iceland is the “land of fire and ice”. In a single day you can see a waterfall, a black-sand beach, a glacier lagoon and an active volcano. The Golden Circle route, the Blue Lagoon's thermal waters, ice caves and whale watching are the highlights. In winter, the northern lights painting the sky are a once-in-a-lifetime sight.",
+            "Исландия — «страна огня и льда». За один день здесь можно увидеть водопад, пляж с чёрным песком, ледниковую лагуну и действующий вулкан. Популярны маршрут «Золотое кольцо», термальные воды Голубой лагуны, ледяные пещеры и наблюдение за китами. Зимой северное сияние, раскрашивающее небо, — зрелище, которое видишь раз в жизни.",
+          ],
+        },
+        Italiya: {
+          bg: "linear-gradient(160deg,#15803d,#7f1d1d 85%)",
+          tag: ["🍝 Klassika", "🍝 Classic", "🍝 Классика"],
+          season: [
+            "Aprel–Iyun va Sentyabr–Oktyabr",
+            "April–June and September–October",
+            "Апрель–июнь и сентябрь–октябрь",
+          ],
+          long: [
+            "Italiya — jahon san'ati beshigi. Rimdagi Kolizey va Vatikan, Venetsiyaning kanallari, Florensiyadagi Uffitsi galereyasi, Amalfi sohili va Toskana vinzorlari sizni kutadi. Haqiqiy pitstsa, pasta, jelato va espresso — Italiya oshxonasi o'zi alohida sayohat. Poyezdlar bilan shaharlar orasida qulay harakatlanish mumkin.",
+            "Italy is the cradle of world art. The Colosseum and the Vatican in Rome, the canals of Venice, the Uffizi Gallery in Florence, the Amalfi Coast and Tuscan vineyards await you. Real pizza, pasta, gelato and espresso — Italian cuisine is a journey of its own. Trains make it easy to travel between cities.",
+            "Италия — колыбель мирового искусства. Вас ждут Колизей и Ватикан в Риме, каналы Венеции, галерея Уффици во Флоренции, побережье Амальфи и виноградники Тосканы. Настоящая пицца, паста, джелато и эспрессо — итальянская кухня сама по себе путешествие. Между городами удобно ездить на поездах.",
+          ],
+        },
+      };
+
+      const $ = (s) => document.querySelector(s),
+        $$ = (s) => document.querySelectorAll(s);
+      let lang = "uz",
+        cur = 0,
+        cont = "all",
+        shown = 24;
+      try {
+        lang = localStorage.getItem("tf_lang") || "";
+      } catch (e) {}
+      if (!T[lang]) {
+        const b = (navigator.language || "uz").slice(0, 2);
+        lang = T[b] ? b : "uz";
+      }
+      const t = (k) => T[lang][k] ?? T.uz[k] ?? k;
+      const usd = (n) => "$" + Math.round(n).toLocaleString("en-US");
+      const D = RAW.split("\n").map((l, i) => {
+        const p = l.split("|");
+        return {
+          id: i,
+          name: p[0],
+          flag: p[1],
+          c: p[2],
+          cap: p[3],
+          price: +p[4],
+          desc: p[5],
+          places: p[6].split(","),
+        };
+      });
+      const parse = (r) =>
+        r.split("\n").map((l) => {
+          const p = l.split("|");
+          return { n: p[0], cap: p[1], desc: p[2], places: p[3].split(",") };
+        });
+      const LD = {
+        uz: D.map((c) => ({
+          n: c.name,
+          cap: c.cap,
+          desc: c.desc,
+          places: c.places,
+        })),
+        en: parse(EN),
+        ru: parse(RU),
+      };
+      const L = (c) => LD[lang][c.id] || LD.uz[c.id];
+      const cname = (c) => CONT[c][LI[lang]];
+      const byName = (n) => D.find((x) => x.name === n);
+      const brl = () => t("br").split("|");
+      const BP = [0.4, 0.3, 0.12, 0.12, 0.06];
+      const price = (c, days = 7, ppl = 1, h = 1) =>
+        c.price * (days / 7) * ppl * h;
+
+      function buildFeat() {
+        $("#feat").innerHTML = Object.keys(HOT)
+          .map((n) => {
+            const c = byName(n),
+              h = HOT[n];
+            return `<div class="fc" style="background:${h.bg}" data-id="${c.id}"><div class="em">${c.flag}</div><span class="tag">${h.tag[LI[lang]]}</span><h3>${L(c).n}</h3><p>${L(c).desc}.</p><div class="pr">${usd(c.price)} <small>${t("from_p")}</small></div></div>`;
+          })
+          .join("");
+      }
+      function buildChips() {
+        $("#chips").innerHTML =
+          `<span class="chip${cont === "all" ? " on" : ""}" data-c="all">${t("all")}</span>` +
+          Object.keys(CONT)
+            .map(
+              (k) =>
+                `<span class="chip${cont === k ? " on" : ""}" data-c="${k}">${cname(k)}</span>`,
+            )
+            .join("");
+      }
+      $("#chips").onclick = (e) => {
+        const c = e.target.closest(".chip");
+        if (!c) return;
+        cont = c.dataset.c;
+        shown = 24;
+        buildChips();
+        render();
+      };
+      $("#q").oninput = () => {
+        shown = 24;
+        render();
+      };
+      $("#sort").onchange = render;
+      $("#more").onclick = () => {
+        shown += 24;
+        render();
+      };
+
+      function render() {
+        const q = $("#q").value.trim().toLowerCase(),
+          s = $("#sort").value;
+        const list = D.filter(
+          (c) =>
+            (cont === "all" || c.c === cont) &&
+            (!q ||
+              ["uz", "en", "ru"]
+                .map((k) => {
+                  const x = LD[k][c.id];
+                  return x.n + " " + x.cap + " " + x.places.join(" ");
+                })
+                .join(" ")
+                .toLowerCase()
+                .includes(q)),
+        );
+        if (s === "a") list.sort((a, b) => a.price - b.price);
+        else if (s === "d") list.sort((a, b) => b.price - a.price);
+        else list.sort((a, b) => L(a).n.localeCompare(L(b).n, lang));
+        $("#grid").innerHTML = list
+          .slice(0, shown)
+          .map(
+            (c, i) =>
+              `<div class="card" data-id="${c.id}" style="animation-delay:${(i % 12) * 0.04}s"><div class="top" style="background:${CG[c.c]}">${c.flag}</div><div class="bd"><div class="ct">${cname(c.c)}</div><h4>${L(c).n}</h4><p>${L(c).desc}</p><div class="pp">${usd(c.price)} <small>${t("from7")}</small></div></div></div>`,
+          )
+          .join("");
+        $("#empty").style.display = list.length ? "none" : "block";
+        $("#more").parentElement.style.display =
+          list.length > shown ? "block" : "none";
+        $("#cnt").textContent = "(" + list.length + ")";
+      }
+      document.addEventListener("click", (e) => {
+        const c = e.target.closest("[data-id]");
+        if (c) openM(+c.dataset.id);
+      });
+
+      function openM(id) {
+        cur = id;
+        const c = D[id],
+          h = HOT[c.name],
+          l = L(c),
+          i = LI[lang];
+        $("#mb").innerHTML =
+          `<div class="mh" style="background:${h ? h.bg : CG[c.c]}"><button class="x" onclick="closeM()" aria-label="Close">✕</button><div class="fl">${c.flag}</div><div><h3>${l.n}</h3><span>${cname(c.c)} · ${t("m_cap")}: ${l.cap}</span></div></div>
+ <div class="mc"><div>
+ <h5>${t("m_about")}</h5><p>${h ? h.long[i] : l.desc + ". " + t("gen").replace("{n}", l.n)}</p>
+ <h5>${t("m_see")}</h5><div class="pl">${l.places.map((p) => `<span>📍 ${p}</span>`).join("")}</div>
+ <h5>${t("m_season")}</h5><p>${h ? h.season[i] : SEAS[c.c][i]}</p>
+ <h5>${t("m_incl")}</h5><p>${t("m_incl_v")}</p>
+ </div><div class="bx"><h5 style="margin:0 0 10px;color:var(--ac)">${t("m_break")}</h5><ul>${brl()
+   .map((b, k) => `<li><span>${b}</span><b>${usd(c.price * BP[k])}</b></li>`)
+   .join(
+     "",
+   )}</ul><div class="tt"><span>${t("m_total")}</span><span>${usd(c.price)}</span></div><a href="#calc" class="btn" onclick="toCalc(${id})">${t("m_calc")}</a><a href="#contact" class="btn o" style="width:100%;margin-top:10px;text-align:center" onclick="toForm(${id})">${t("m_apply")}</a></div></div>`;
+        $("#modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeM() {
+        $("#modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      $("#modal").onclick = (e) => {
+        if (e.target.id === "modal") closeM();
+      };
+      document.onkeydown = (e) => {
+        if (e.key === "Escape") closeM();
+      };
+      function toCalc(id) {
+        closeM();
+        $("#cC").value = id;
+        calc();
+      }
+      function toForm(id) {
+        closeM();
+        $("#fc").value = id;
+      }
+
+      function buildOpts() {
+        const o = D.slice()
+          .sort((a, b) => L(a).n.localeCompare(L(b).n, lang))
+          .map((c) => `<option value="${c.id}">${c.flag} ${L(c).n}</option>`)
+          .join("");
+        const v1 = $("#cC").value || byName("Yaponiya").id,
+          v2 = $("#fc").value;
+        $("#cC").innerHTML = o;
+        $("#fc").innerHTML = `<option value="">${t("ph_country")}</option>` + o;
+        $("#cC").value = v1;
+        $("#fc").value = v2;
+      }
+      function calc() {
+        const c = D[+$("#cC").value],
+          d = +$("#cD").value,
+          p = Math.max(1, +$("#cP").value || 1),
+          h = +$("#cH").value;
+        $("#dv").textContent = d;
+        const tt = price(c, d, p, h);
+        $("#rT").textContent = usd(tt);
+        $("#rL").innerHTML =
+          brl()
+            .map(
+              (b, k) => `<li><span>${b}</span><b>${usd(tt * BP[k])}</b></li>`,
+            )
+            .join("") +
+          `<li><span>${t("per")}</span><b>${usd(tt / p)}</b></li>`;
+      }
+      ["cC", "cD", "cP", "cH"].forEach((i) =>
+        $("#" + i).addEventListener("input", calc),
+      );
+
+      $("#form").onsubmit = (e) => {
+        e.preventDefault();
+        e.target.reset();
+        toast(t("toast"));
+      };
+      function toast(m) {
+        const x = $("#toast");
+        x.textContent = m;
+        x.classList.add("show");
+        setTimeout(() => x.classList.remove("show"), 3500);
+      }
+
+      function setLang(l) {
+        lang = l;
+        try {
+          localStorage.setItem("tf_lang", l);
+        } catch (e) {}
+        document.documentElement.lang = l;
+        document.title = t("title");
+        $$("[data-i]").forEach((e) => (e.innerHTML = t(e.dataset.i)));
+        $$("[data-ip]").forEach((e) => (e.placeholder = t(e.dataset.ip)));
+        $$(".lang button").forEach((b) =>
+          b.classList.toggle("on", b.dataset.l === l),
+        );
+        $("#foot").textContent =
+          "© " + new Date().getFullYear() + " Tourist Farm. " + t("foot");
+        buildChips();
+        buildFeat();
+        buildOpts();
+        render();
+        calc();
+        if ($("#modal").classList.contains("open")) openM(cur);
+      }
+      $$(".lang button").forEach(
+        (b) => (b.onclick = () => setLang(b.dataset.l)),
+      );
+      $("#burger").onclick = () => $("#links").classList.toggle("open");
+      $("#links").onclick = () => $("#links").classList.remove("open");
+      const io = new IntersectionObserver((es) =>
+        es.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target,
+            n = +el.dataset.n;
+          let v = 0;
+          const st = Math.ceil(n / 60);
+          const iv = setInterval(() => {
+            v = Math.min(n, v + st);
+            el.textContent = v.toLocaleString("en-US");
+            if (v >= n) clearInterval(iv);
+          }, 25);
+          io.unobserve(el);
+        }),
+      );
+      $$("[data-n]").forEach((el) => io.observe(el));
+      setLang(lang);
+    </script>
+  </body>
+</html>
